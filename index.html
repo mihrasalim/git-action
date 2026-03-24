@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mihras | DevOps Student</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif; }
+    body { background: #0f172a; color: #e2e8f0; overflow-x: hidden; }
+
+    header {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:20px 50px; position:fixed; width:100%; background:rgba(15,23,42,0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    header h1 { color:#38bdf8; }
+    nav a {
+      margin-left:20px; text-decoration:none; color:#e2e8f0; transition:0.3s;
+    }
+    nav a:hover { color:#38bdf8; }
+
+    section {
+      min-height:100vh; display:flex; justify-content:center; align-items:center;
+      flex-direction:column; padding:50px;
+    }
+
+    .hero h2 { font-size:3rem; }
+    .hero span { color:#38bdf8; }
+
+    .btn {
+      margin-top:20px; padding:12px 25px; border:none;
+      background:#38bdf8; color:#0f172a; border-radius:25px;
+      cursor:pointer; transition:0.3s;
+    }
+    .btn:hover { transform:scale(1.1); }
+
+    .card-container {
+      display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap:20px; width:100%; max-width:1000px;
+    }
+
+    .card {
+      background:#1e293b; padding:20px; border-radius:15px;
+      transition:0.3s; cursor:pointer;
+    }
+
+    .card:hover {
+      transform:translateY(-10px) scale(1.03);
+      background:#334155;
+    }
+
+    footer {
+      text-align:center; padding:20px; background:#020617;
+    }
+
+    .hidden { opacity:0; transform:translateY(50px); transition:0.6s; }
+    .show { opacity:1; transform:translateY(0); }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Mihras</h1>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <h2>Hello, I'm <span>Mihras</span></h2>
+  <p>DevOps Student at Synnefo Solutions</p>
+  <button class="btn" onclick="scrollToSection('about')">Explore</button>
+</section>
+
+<section id="about" class="hidden">
+  <h2>About Me</h2>
+  <p>I am passionate about DevOps, automation, and cloud technologies. I love building efficient pipelines and learning modern infrastructure tools.</p>
+</section>
+
+<section id="skills" class="hidden">
+  <h2>Skills</h2>
+  <div class="card-container">
+    <div class="card" onclick="showAlert('Docker')">Docker</div>
+    <div class="card" onclick="showAlert('Kubernetes')">Kubernetes</div>
+    <div class="card" onclick="showAlert('CI/CD')">CI/CD</div>
+    <div class="card" onclick="showAlert('AWS')">AWS</div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Mihras | Synnefo Solutions</p>
+</footer>
+
+<script>
+  function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function showAlert(skill) {
+    alert(skill + ' is one of my core skills!');
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  });
+
+  document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
